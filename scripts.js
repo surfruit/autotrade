@@ -1,37 +1,37 @@
 // Плавна прокрутка до секцій
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth',
-    });
-    if (window.innerWidth <= 768) {
-      document.querySelector('.nav-menu').classList.remove('active');
-    }
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+      });
+      if (window.innerWidth <= 768) {
+          document.querySelector('.nav-menu').classList.remove('active');
+      }
   });
 });
 
 // Перемикання мови
-document.querySelectorAll('.lang-btn').forEach((button) => {
-  button.addEventListener('click', function () {
-    const lang = this.getAttribute('data-lang');
-    document.querySelectorAll('[data-uk]').forEach((element) => {
-      element.textContent = element.getAttribute(`data-${lang}`);
-    });
-    document.querySelectorAll('input, textarea').forEach((element) => {
-      if (element.hasAttribute(`data-${lang}-placeholder`)) {
-        element.placeholder = element.getAttribute(`data-${lang}-placeholder`);
-      }
-    });
-    document.documentElement.lang = lang;
+document.querySelectorAll('.lang-btn').forEach(button => {
+  button.addEventListener('click', function() {
+      const lang = this.getAttribute('data-lang');
+      document.querySelectorAll('[data-uk]').forEach(element => {
+          element.textContent = element.getAttribute(`data-${lang}`);
+      });
+      document.querySelectorAll('input, textarea').forEach(element => {
+          if (element.hasAttribute(`data-${lang}-placeholder`)) {
+              element.placeholder = element.getAttribute(`data-${lang}-placeholder`);
+          }
+      });
+      document.documentElement.lang = lang;
   });
 });
 
 // Розкриття FAQ
-document.querySelectorAll('.faq-item h3').forEach((item) => {
-  item.addEventListener('click', function () {
-    const answer = this.nextElementSibling;
-    answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+document.querySelectorAll('.faq-item h3').forEach(item => {
+  item.addEventListener('click', function() {
+      const answer = this.nextElementSibling;
+      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
   });
 });
 
@@ -41,13 +41,13 @@ function toggleMenu() {
   nav.classList.toggle('active');
 }
 
-// Слайдер
+// Слайдер для головної секції
 let slides = document.querySelectorAll('.slide');
 let currentSlide = 0;
 
 function showSlide(index) {
   slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === index);
+      slide.classList.toggle('active', i === index);
   });
 }
 
@@ -58,3 +58,21 @@ function nextSlide() {
 
 setInterval(nextSlide, 5000); // Зміна слайду кожні 5 секунд
 showSlide(currentSlide);
+
+// Слайдер для "Featured Cars"
+let featuredSlides = document.querySelectorAll('.featured-slide');
+let currentFeaturedSlide = 0;
+
+function showFeaturedSlide(index) {
+  featuredSlides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+  });
+}
+
+function nextFeaturedSlide() {
+  currentFeaturedSlide = (currentFeaturedSlide + 1) % featuredSlides.length;
+  showFeaturedSlide(currentFeaturedSlide);
+}
+
+setInterval(nextFeaturedSlide, 5000); // Зміна слайду кожні 5 секунд
+showFeaturedSlide(currentFeaturedSlide);

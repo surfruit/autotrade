@@ -16,25 +16,28 @@ body {
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 20px;
+    min-width: 1000px; /* Додано мінімальну ширину, щоб усі пункти вміщалися в рядок */
 }
 
 header {
     background: #fff;
-    padding: 20px 0;
+    padding: 15px 0;
     position: fixed;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 header .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Вирівнювання по центру */
     align-items: center;
+    gap: 20px; /* Проміжок між групами */
+    /* Прибрано flex-wrap: wrap, щоб уникнути перенесення */
 }
 
 .logo {
-    height: 50px;
+    height: 40px;
     transition: transform 0.3s;
 }
 
@@ -46,23 +49,26 @@ header .container {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    padding: 5px;
 }
 
 .hamburger span {
-    width: 30px;
+    width: 25px;
     height: 3px;
     background: #4a90e2;
-    margin: 3px 0;
+    margin: 4px 0;
     transition: all 0.3s;
 }
 
 .nav-menu ul {
     display: flex;
     list-style: none;
+    align-items: center;
+    gap: 25px; /* Проміжок між пунктами */
 }
 
 .nav-menu ul li {
-    margin-right: 30px;
+    margin: 0;
 }
 
 .nav-menu ul li a {
@@ -70,6 +76,9 @@ header .container {
     text-decoration: none;
     font-weight: 600;
     text-transform: uppercase;
+    font-size: 14px;
+    padding: 5px 10px;
+    white-space: nowrap; /* Запобігає перенесенню тексту */
     transition: color 0.3s;
 }
 
@@ -80,21 +89,31 @@ header .container {
 .header-buttons {
     display: flex;
     align-items: center;
+    gap: 15px;
 }
 
 .btn {
     background: #4a90e2;
     color: #fff;
-    padding: 12px 25px;
+    padding: 8px 20px;
     text-decoration: none;
-    border-radius: 50px;
+    border-radius: 25px;
     font-weight: 600;
+    font-size: 14px;
     transition: background 0.3s, transform 0.3s;
+    display: inline-block;
+    white-space: nowrap; /* Запобігає перенесенню тексту кнопки */
 }
 
 .btn:hover {
     background: #2a6db0;
-    transform: translateY(-3px);
+    transform: translateY(-2px);
+}
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .language-switcher button {
@@ -102,8 +121,9 @@ header .container {
     border: none;
     color: #4a90e2;
     cursor: pointer;
-    font-size: 1rem;
-    margin-left: 10px;
+    font-size: 14px;
+    padding: 5px;
+    white-space: nowrap; /* Запобігає перенесенню тексту */
     transition: color 0.3s;
 }
 
@@ -115,6 +135,7 @@ header .container {
     height: 100vh;
     position: relative;
     overflow: hidden;
+    padding-top: 60px; /* Додано відступ для уникнення накладання з хедером */
 }
 
 .slider {
@@ -166,7 +187,7 @@ header .container {
     font-size: 1.2rem;
 }
 
-.about, .services, .recent-cars, .how-it-works, .why-choose-us, .faq, .contact {
+.about, .services, .recent-cars, .featured-cars, .how-it-works, .why-choose-us, .faq, .contact {
     padding: 100px 0;
     background: #fff;
 }
@@ -223,6 +244,35 @@ h2 {
     object-fit: cover;
     border-radius: 10px;
     margin-bottom: 15px;
+}
+
+.featured-cars {
+    padding: 50px 0;
+}
+
+.featured-slider {
+    position: relative;
+    overflow: hidden;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.featured-slide {
+    display: none;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.featured-slide img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.featured-slide.active {
+    display: block;
 }
 
 .faq-item {
@@ -296,29 +346,29 @@ footer .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-start; /* Вирівнювання зверху */
-    gap: 20px; /* Додано відступ між елементами */
+    align-items: flex-start;
+    gap: 20px;
 }
 
 .footer-info {
     text-align: left;
-    max-width: 400px; /* Обмеження ширини для кращого вигляду */
+    max-width: 400px;
 }
 
 footer p, footer h4 {
     margin: 10px 0;
-    color: #333; /* Темніший текст для кращої читабельності */
+    color: #333;
 }
 
 footer h4 {
     font-size: 1.2rem;
     font-weight: 600;
-    color: #2a6db0; /* Темніший синій для контрасту */
+    color: #2a6db0;
 }
 
 footer iframe {
-    width: 100%; /* Адаптивна ширина */
-    max-width: 300px; /* Максимальна ширина */
+    width: 100%;
+    max-width: 300px;
     height: 200px;
     border: 0;
 }
@@ -330,12 +380,13 @@ footer iframe {
 
     .nav-menu {
         position: fixed;
-        top: 80px;
+        top: 60px;
         left: -100%;
         width: 100%;
         height: 100vh;
         background: #fff;
         transition: left 0.3s ease;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     }
 
     .nav-menu.active {
@@ -344,15 +395,29 @@ footer iframe {
 
     .nav-menu ul {
         flex-direction: column;
-        padding: 20px;
+        padding: 20px 0;
+        text-align: center;
     }
 
     .nav-menu ul li {
-        margin: 20px 0;
+        margin: 15px 0;
     }
 
     .header-buttons {
-        margin-left: 20px;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 0 0 0;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .language-switcher {
+        margin-top: 10px;
     }
 
     .hero-content h1 {
@@ -365,17 +430,29 @@ footer iframe {
 
     footer .container {
         flex-direction: column;
-        align-items: center; /* Центрування елементів */
+        align-items: center;
     }
 
     .footer-info {
         text-align: center;
-        margin-bottom: 20px; /* Додано відступ між блоками */
+        margin-bottom: 20px;
     }
 
     footer iframe {
         margin-top: 20px;
-        width: 100%; /* Адаптивна ширина на мобільних */
+        width: 100%;
         max-width: 100%;
+    }
+
+    .featured-slider {
+        max-width: 100%;
+    }
+
+    .featured-slide {
+        max-width: 100%;
+    }
+
+    .container {
+        min-width: 0; /* Прибрано мінімальну ширину на мобільних */
     }
 }
